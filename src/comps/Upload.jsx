@@ -9,13 +9,20 @@ function Upload() {
   // handler: choose local image and upload it to firebase storage and db
   const handleUploadImage = async e => {
     e.preventDefault()
-    setIsUploading(true)
+    // setIsUploading(true)
 
     const chosenImage = e.target.imagesInp.files[0]
 
     // validate: if no photo is selected - show alert, return
     if (!chosenImage) {
       alert('please, select an image!')
+      return
+    }
+
+    // validate: image types
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+    if ( !validImageTypes.includes(chosenImage.type) ) {
+      alert(`Invalid image type! Please choose a ${validImageTypes.map(type => type.split('/')[1]).join(', ')} image`);
       return
     }
     
