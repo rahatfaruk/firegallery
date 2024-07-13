@@ -1,43 +1,31 @@
 import { useState, useEffect } from "react";
-import { onValue, ref, remove } from "firebase/database";
-import { ref as refStorage, deleteObject } from "firebase/storage";
-import { fbDatabase, fbStorage } from "../../firebase.config";
+import { onValue, ref } from "firebase/database";
+import { fbDatabase } from "../../firebase.config";
 import ImageBox from "./ImageBox";
+import Loading from "./Loading";
 
 function Gallery() {
-  const [gallery, setGallery] = useState([])
-
-  // delete a photo onClick delete-btn
-  // const handleDeletePhoto = async image => {
-  //   // re-confirm deletion
-  //   const isConfirmed = confirm('Are you sure to delete this image?')
-
-  //   if (isConfirmed) {
-  //     // delete image-info from database
-  //     await remove(ref(fbDatabase, `images/${image.id}`))
-
-  //     // delete image-file from storage
-  //     await deleteObject(refStorage(fbStorage, image.fullPath))
-  //     alert('Deleted successfully!')
-  //   }
-  // }
+  const [gallery, setGallery] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   // get (realtime) all photos from database
   useEffect(() => {
     const cancelOnValue = onValue(ref(fbDatabase, 'images'), (snapshot) => {
+      setIsLoading(true)
       const data = []
       snapshot.forEach(childSnap => {
         data.push({ id: childSnap.key, ...childSnap.val() })
       })
 
       setGallery(data)
+      setIsLoading(false)
     })
 
     // clear effect
     return () => cancelOnValue()
   }, [])
 
-
+  if (isLoading) { return <Loading /> }
   return (
     <div>
       <h3 className="text-lg font-semibold mb-2">Gallery:</h3>

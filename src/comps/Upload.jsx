@@ -1,12 +1,15 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ref as refDB, push } from "firebase/database";
 import { fbDatabase, fbStorage } from "../../firebase.config";
+import { useState } from "react";
 
 function Upload() {
+  const [isUploading, setIsUploading] = useState(false)
 
   // handler: choose local image and upload it to firebase storage and db
   const handleUploadImage = async e => {
     e.preventDefault()
+    setIsUploading(true)
 
     const chosenImage = e.target.imagesInp.files[0]
 
@@ -30,6 +33,7 @@ function Upload() {
       size: uploadResult.metadata.size,
     })
 
+    setIsUploading(false)
     // reset form; show success msg
     e.target.reset()
     alert('image uploaded!')
@@ -41,7 +45,7 @@ function Upload() {
       <h3 className="text-lg font-semibold mb-2">Upload new photo:</h3>
       <form onSubmit={handleUploadImage}>
         <input type="file" name="imagesInp" className="block mb-3" />
-        <button className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors">Upload</button>
+        <button disabled={isUploading} className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors disabled:opacity-75"> {isUploading ? 'Uploading..' : 'Upload'} </button>
       </form>
     </div>
   );
