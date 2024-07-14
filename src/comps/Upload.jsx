@@ -20,7 +20,7 @@ function Upload() {
     }
 
     // validate: image types
-    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml']
     if ( !validImageTypes.includes(chosenImage.type) ) {
       alert(`Invalid image type! Please choose a ${validImageTypes.map(type => type.split('/')[1]).join(', ')} image`);
       return

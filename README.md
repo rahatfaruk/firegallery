@@ -12,4 +12,5 @@ This project is developed and designed by *Rahat Faruk* (me). I wanted to explor
   - copy url
   - live gallery
   - loading on fetch 
+  - verify if the file is a valid image type
 
