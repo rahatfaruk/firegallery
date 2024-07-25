@@ -36,7 +36,7 @@ function Gallery() {
 
         {gallery.length < 1 ?
           <p className="text-xl text-gray-500">Empty gallery! Start by uploading a photo!</p> :
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid justify-center md:grid-cols-2 lg:grid-cols-4 gap-4">
             {gallery.map(img => <ImageBox key={img.id} img={img} /> )}
           </div>
         }

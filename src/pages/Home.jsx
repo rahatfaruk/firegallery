@@ -1,3 +1,4 @@
+import { ChevronDoubleRight } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -9,7 +10,7 @@ function Home() {
           <h2 className="text-3xl md:text-4xl capitalize font-semibold">Host images for your web project</h2>
           <p className="mt-4 text-base md:text-lg text-gray-600">Upload your images from your local computer to the cloud and use image-url for your web project. You can manage your images however you like!</p>
 
-          <Link to={'/login'} className="inline-block mt-6 px-4 py-2 rounded-md bg-blue-600 text-white font-bold text-lg hover:opacity-85 transition-opacity cursor-pointer shadow-md"> Get started </Link>
+          <Link to={'/gallery'} className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-md bg-blue-600 text-white font-bold text-lg hover:opacity-85 transition-opacity cursor-pointer shadow-md"> Go To Gallery <ChevronDoubleRight className="" /> </Link>
         </div>
 
         {/* img */}

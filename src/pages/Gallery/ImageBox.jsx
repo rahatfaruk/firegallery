@@ -27,7 +27,7 @@ function ImageBox({img}) {
 
 
   return (
-    <div key={img.id} className="relative border rounded-md shadow-md">
+    <div key={img.id} className="relative w-full max-w-lg self-center border rounded-md shadow-md">
       <div title={`${Math.trunc(img.size/1000)} kb`}>
         <img src={img.imageUrl} className="w-full h-52 object-cover rounded-t-md" alt="" />
       </div>
