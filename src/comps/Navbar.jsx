@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const user = null 
+  const user = null || {displayName: 'ali', photoUrl: 'https://dummyimage.com/60/000/fff&text=a'}
 
   return (  
     <nav className="px-4">

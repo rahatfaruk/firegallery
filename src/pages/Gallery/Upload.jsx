@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ref as refDB, push } from "firebase/database";
-import { fbDatabase, fbStorage } from "../../firebase.config";
+import { fbDatabase, fbStorage } from "../../../firebase.config";
 import { useState } from "react";
 
 function Upload() {

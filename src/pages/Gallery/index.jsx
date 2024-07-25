@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { onValue, ref } from "firebase/database";
-import { fbDatabase } from "../../firebase.config";
+import { fbDatabase } from "../../../firebase.config";
 import ImageBox from "./ImageBox";
-import Loading from "./Loading";
+import Loading from "../../comps/Loading";
+import Upload from "./Upload";
 
 function Gallery() {
   const [gallery, setGallery] = useState(null)
@@ -27,16 +28,20 @@ function Gallery() {
 
   if (isLoading) { return <Loading /> }
   return (
-    <div>
-      <h3 className="text-lg font-semibold mb-2">Gallery:</h3>
+    <section className="px-4">
+      <div className="max-w-screen-xl mx-auto py-8">
+        <h3 className="text-lg font-semibold mb-2">My Gallery:</h3>
 
-      {gallery.length < 1 ?
-        <p className="text-xl text-gray-500">Empty gallery! Start by uploading a photo!</p> :
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {gallery.map(img => <ImageBox key={img.id} img={img} /> )}
-        </div>
-      }
-    </div>
+        <Upload />
+
+        {gallery.length < 1 ?
+          <p className="text-xl text-gray-500">Empty gallery! Start by uploading a photo!</p> :
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {gallery.map(img => <ImageBox key={img.id} img={img} /> )}
+          </div>
+        }
+      </div>
+    </section>
   );
 }
 

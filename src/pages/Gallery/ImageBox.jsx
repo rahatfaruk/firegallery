@@ -1,7 +1,7 @@
 import { ref, remove } from "firebase/database";
 import { deleteObject, ref as refStorage } from "firebase/storage";
 import { Copy, Trash3Fill } from "react-bootstrap-icons";
-import { fbDatabase, fbStorage } from "../../firebase.config";
+import { fbDatabase, fbStorage } from "../../../firebase.config";
 
 function ImageBox({img}) {
 
