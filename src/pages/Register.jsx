@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {Eye, EyeSlash} from 'react-bootstrap-icons';
 import {useForm} from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useFirebase from '../hooks/useFirebase';
 
 const clsInputLabel = "block mb-1 text-sm text-gray-600 dark:text-gray-400"
 const clsInput = "border w-full min-w-0 px-3 py-2 rounded-md bg-gray-50 shadow dark:text-gray-700"
@@ -10,16 +11,28 @@ const clsInputErr = "text-sm text-red-500 mt-2"
 function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const {handleSubmit, register, formState: { errors:formErr }} = useForm()
+  const { fbUploadImageNdGetUrl, fbCreateUser } = useFirebase()
 
   // onSubmit form -> create new account 
   const onSubmit = async formData => {
-    formData.photo = formData.photo[0]
-    // check for valid photo type; if not, then return with a warning
-    if ( !(formData.photo && ['image/jpeg', 'image/png'].includes(formData.photo.type)) ) {
-      alert('please choose png or jpg image!')
-      return
+    try {
+      const {email, password, name, photo} = formData
+      // check for valid photo type; if not, then return with a warning
+      if ( !(photo && ['image/jpeg', 'image/png'].includes(photo[0].type)) ) {
+        alert('please choose png or jpg image!')
+        return
+      }
+  
+      
+      // host profile image and get photo-url
+      const {url} = await fbUploadImageNdGetUrl(`profileImages/${email}`, photo[0])
+      // create account req
+      await fbCreateUser(email, password, name, url)
+  
+      alert('successfully created account!')
+    } catch (error) {
+      console.log(error.message);
     }
-
   }
 
 
@@ -37,7 +50,7 @@ function Register() {
 
           <label className="block mb-4">
             <span className={clsInputLabel}>Your photo (optional)</span>
-            <input type="file" {...register('photo')} className={clsInput} />
+            <input type="file" {...register('photo', {required:true})} className={clsInput} />
             {formErr.photo && <p className={clsInputErr}>This field is required</p>}
           </label>
 
