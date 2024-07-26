@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {Eye, EyeSlash} from 'react-bootstrap-icons';
 import {useForm} from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useFirebase from '../hooks/useFirebase';
 
 const clsInputLabel = "block mb-1 text-sm text-gray-600 dark:text-gray-400"
@@ -19,7 +20,7 @@ function Register() {
       const {email, password, name, photo} = formData
       // check for valid photo type; if not, then return with a warning
       if ( !(photo && ['image/jpeg', 'image/png'].includes(photo[0].type)) ) {
-        alert('please choose png or jpg image!')
+        toast.warn('please choose png or jpg image!')
         return
       }
   
@@ -31,7 +32,7 @@ function Register() {
   
       alert('successfully created account!')
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
     }
   }
 

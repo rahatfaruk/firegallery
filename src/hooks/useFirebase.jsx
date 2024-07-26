@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { fbAuth, fbStorage } from "../../firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";

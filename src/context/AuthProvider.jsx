@@ -13,7 +13,6 @@ function AuthProvider({children}) {
   useEffect(() => {
     const unsub = onAuthStateChanged(fbAuth, currUser => {
       setUser(currUser);
-      console.log('currUser', currUser);
       setLoading(false)
     })
 
