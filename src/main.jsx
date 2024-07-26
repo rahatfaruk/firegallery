@@ -6,6 +6,8 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Home from './pages/Home.jsx'
 import Gallery from './pages/Gallery'
 import ErrorPage from '../../reusable-ui/pages/ErrorPage.jsx'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
 
 // defining routes 
 const router = createBrowserRouter(
@@ -13,6 +15,8 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>} errorElement={<ErrorPage/>} >
       <Route index element={<Home/>} />
       <Route path='/gallery' element={<Gallery/>} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/register' element={<Register/>} />
     </Route>
   )
 )
