@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {Eye, EyeSlash} from 'react-bootstrap-icons';
 import {useForm} from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useFirebase from '../hooks/useFirebase';
 
@@ -13,6 +13,7 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const {handleSubmit, register, formState: { errors:formErr }} = useForm()
   const { fbUploadImageNdGetUrl, fbCreateUser } = useFirebase()
+  const navigate = useNavigate()
 
   // onSubmit form -> create new account 
   const onSubmit = async formData => {
@@ -30,7 +31,8 @@ function Register() {
       // create account req
       await fbCreateUser(email, password, name, url)
   
-      alert('successfully created account!')
+      toast.success('successfully created account!')
+      navigate('/gallery')
     } catch (error) {
       toast.error(error.message);
     }

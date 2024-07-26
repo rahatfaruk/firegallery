@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import {Eye, EyeSlash, Google} from 'react-bootstrap-icons';
 import {useForm} from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import useFirebase from '../hooks/useFirebase';
 
 const clsInputLabel = "block mb-1 text-sm text-gray-600 dark:text-gray-400"
 const clsInput = "border w-full min-w-0 px-3 py-2 rounded-md bg-gray-50 shadow dark:text-gray-700"
@@ -10,10 +12,18 @@ const clsInputErr = "text-sm text-red-500 mt-2"
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const {handleSubmit, register, formState: { errors:formErr }} = useForm()
+  const navigate = useNavigate()
+  const { fbSignIn } = useFirebase()
 
   // onSubmit form -> login
   const onSubmit = async formData => {
-    
+    try {
+      await fbSignIn(formData.email, formData.password)
+      toast.success('successfully signed in!')
+      navigate('/gallery')
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
   
   // google login
