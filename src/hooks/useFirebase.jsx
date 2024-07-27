@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { fbAuth, fbStorage } from "../../firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -19,6 +19,15 @@ function useFirebase() {
   const fbSignIn = async (email, password) => {
     setLoading(true)
     const credential = await signInWithEmailAndPassword(fbAuth, email, password)
+    setLoading(false)
+    return credential
+  }
+  
+  // # sign in
+  const fbGoogleSignIn = async () => {
+    setLoading(true)
+    const provider = new GoogleAuthProvider()
+    const credential = await signInWithPopup(fbAuth, provider)
     setLoading(false)
     return credential
   }
@@ -43,7 +52,7 @@ function useFirebase() {
     return {uploadResult, url}
   }
 
-  return { loading, fbCreateUser, fbSignIn, fbSignOut, fbUploadImageNdGetUrl }
+  return { loading, fbCreateUser, fbGoogleSignIn, fbSignIn, fbSignOut, fbUploadImageNdGetUrl }
 }
 
 export default useFirebase;

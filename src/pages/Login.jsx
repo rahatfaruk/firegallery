@@ -13,7 +13,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const {handleSubmit, register, formState: { errors:formErr }} = useForm()
   const navigate = useNavigate()
-  const { fbSignIn } = useFirebase()
+  const { fbSignIn, fbGoogleSignIn } = useFirebase()
 
   // onSubmit form -> login
   const onSubmit = async formData => {
@@ -28,7 +28,13 @@ function Login() {
   
   // google login
   const handleLoginWithGoogle = async () => {
-
+    try {
+      await fbGoogleSignIn()
+      toast.success('successfully signed in!')
+      navigate('/')
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
 
