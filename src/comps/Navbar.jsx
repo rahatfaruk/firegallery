@@ -8,7 +8,6 @@ function Navbar() {
   const { fbSignOut } = useFirebase()
   const {user} = useContext(AuthContext)
   const navigate = useNavigate()
-  console.log(user);
 
   // logout
   const handleSignOut = async () => {
@@ -27,7 +26,8 @@ function Navbar() {
         <>
           {user ? 
             <div className="flex gap-3 items-center">
-              <img src={user.photoURL} className="rounded-full size-8 border border-blue-600 object-cover" alt={user.displayName} title={user.displayName} />
+              <span>{user.displayName}</span>
+              <img src={user.photoURL} className="rounded-full size-8 border border-blue-600 object-cover" alt="profile photo" title={user.email} />
               <button onClick={handleSignOut} className="inline-block px-3 py-1.5 rounded-md bg-red-700 text-white text-sm hover:bg-red-800 transition-colors"> Logout </button>
             </div> : 
             <div>

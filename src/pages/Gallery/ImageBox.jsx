@@ -1,9 +1,10 @@
 import { ref, remove } from "firebase/database";
 import { deleteObject, ref as refStorage } from "firebase/storage";
 import { Copy, Trash3Fill } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 import { fbDatabase, fbStorage } from "../../../firebase.config";
 
-function ImageBox({img}) {
+function ImageBox({img, filePath}) {
 
   // delete a photo onClick delete-btn
   const handleDeleteImage = async () => {
@@ -12,11 +13,11 @@ function ImageBox({img}) {
 
     if (isConfirmed) {
       // delete image-info from database
-      await remove(ref(fbDatabase, `images/${img.id}`))
+      await remove(ref(fbDatabase, `${filePath}/${img.id}`))
 
       // delete image-file from storage
       await deleteObject(refStorage(fbStorage, img.fullPath))
-      alert('Deleted successfully!')
+      toast.success('Deleted successfully!')
     }
   }
 
