@@ -14,7 +14,7 @@ function Navbar() {
   const handleSignOut = async () => {
     await fbSignOut()
     toast.info('logged out!')
-    navigate('/')
+    navigate('/login')
   }
 
   return (  

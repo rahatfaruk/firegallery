@@ -20,7 +20,7 @@ function Login() {
     try {
       await fbSignIn(formData.email, formData.password)
       toast.success('successfully signed in!')
-      navigate('/gallery')
+      navigate('/')
     } catch (error) {
       toast.error(error.message)
     }

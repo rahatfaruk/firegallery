@@ -9,13 +9,14 @@ import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
+import PrivateRoute from './comps/PrivateRoute.jsx'
 
 // defining routes 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>} errorElement={<ErrorPage/>} >
       <Route index element={<Home/>} />
-      <Route path='gallery' element={<Gallery/>} />
+      <Route path='gallery' element={ <PrivateRoute> <Gallery/> </PrivateRoute> } />
       <Route path='login' element={<Login/>} />
       <Route path='register' element={<Register/>} />
     </Route>

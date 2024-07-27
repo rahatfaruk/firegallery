@@ -32,7 +32,7 @@ function Register() {
       await fbCreateUser(email, password, name, url)
   
       toast.success('successfully created account!')
-      navigate('/gallery')
+      navigate('/')
     } catch (error) {
       toast.error(error.message);
     }
