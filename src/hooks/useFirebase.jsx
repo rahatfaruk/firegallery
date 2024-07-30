@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import { fbAuth, fbStorage } from "../../firebase.config";
+import { fbAuth, fbStorage, fbFirestore } from "../../firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 function useFirebase() {
   const [loading, setLoading] = useState(true)
@@ -39,7 +40,7 @@ function useFirebase() {
     setLoading(false)
   }
 
-  // # upload image (into firebase-storage) and get url
+  // # storage: upload image and get url
   const fbUploadImageNdGetUrl = async (pathName, file) => {
     setLoading(true)
     // create file path ref for firebase storage
@@ -52,7 +53,15 @@ function useFirebase() {
     return {uploadResult, url}
   }
 
-  return { loading, fbCreateUser, fbGoogleSignIn, fbSignIn, fbSignOut, fbUploadImageNdGetUrl }
+  // # firestore
+  const fbAddDoc = async (path, data) => {
+    const pathArr = path.slice(1,).split('/')
+    const docRef = await addDoc( collection(fbFirestore, ...pathArr), data )
+    return docRef
+  }
+
+
+  return { loading, fbCreateUser, fbGoogleSignIn, fbSignIn, fbSignOut, fbUploadImageNdGetUrl, fbAddDoc }
 }
 
 export default useFirebase;

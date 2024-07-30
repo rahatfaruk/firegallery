@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
-import { getDatabase } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 // firebase project's config.
@@ -18,6 +18,6 @@ const app = initializeApp(firebaseConfig)
 // init firebase services
 const fbAuth = getAuth(app)
 const fbStorage = getStorage(app)
-const fbDatabase = getDatabase(app)
+const fbFirestore = getFirestore(app)
 
-export { fbAuth, fbStorage, fbDatabase }
+export { fbAuth, fbStorage, fbFirestore }

@@ -15,7 +15,7 @@ function Gallery() {
       <div className="max-w-screen-xl mx-auto py-6">
         <h2 className="text-2xl font-semibold">Gallery</h2>
         
-        <CreateAlbum />
+        <CreateAlbum user={user} />
         <SelectAlbum selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} />
         
       </div>

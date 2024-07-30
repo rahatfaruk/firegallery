@@ -1,6 +1,9 @@
 import { toast } from "react-toastify";
+import useFirebase from "../../hooks/useFirebase";
 
-function CreateAlbum() {
+function CreateAlbum({user}) {
+  const { fbAddDoc } = useFirebase()
+
   // create new album
   const handleSubmit = async e => {
     e.preventDefault()
@@ -11,9 +14,11 @@ function CreateAlbum() {
       toast.warn('type album name!')
     }
     
-    console.log(newAlbumName);
     // send req to create album
-    
+    await fbAddDoc(`/app/${user.uid}/albums`, {album: newAlbumName})
+    // clear form ; show msg
+    e.target.reset()
+    toast.success('album created seccessfully!')
   }
 
 
