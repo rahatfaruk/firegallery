@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import CreateAlbum from "./CreateAlbum";
 import SelectAlbum from "./SelectAlbum";
+import UploadImage from "./UploadImage";
 
 function Gallery() {
   const [isLoading, setIsLoading] = useState(true)
@@ -17,6 +18,10 @@ function Gallery() {
         
         <CreateAlbum user={user} />
         <SelectAlbum selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} />
+
+        {selectedAlbum && (
+          <UploadImage selectedAlbum={selectedAlbum} />
+        )}
         
       </div>
     </section>

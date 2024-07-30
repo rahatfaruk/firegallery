@@ -1,12 +1,11 @@
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { fbFirestore } from "../../../firebase.config";
 import { AuthContext } from "../../context/AuthProvider";
 
-function SelectAlbum({}) {
+function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
   const [albums, setAlbums] = useState([])
-  const [selectedAlbum, setSelectedAlbum] = useState('')
-
+  // const [selectedAlbum, setSelectedAlbum] = useState(null)
   const {user} = useContext(AuthContext)
 
   // get all album
@@ -32,8 +31,8 @@ function SelectAlbum({}) {
           {albums.map(album => 
             <button 
               key={album.id}
-              onClick={() => setSelectedAlbum(album.albumName)} 
-              className={ `px-3 py-1 border rounded-md shadow hover:border-blue-600 ${selectedAlbum === album.albumName ? 'text-blue-600 border-blue-600 font-semibold' : 'text-gray-500'}` }
+              onClick={() => setSelectedAlbum(album)} 
+              className={ `px-3 py-1 border rounded-md shadow hover:border-blue-600 ${selectedAlbum?.albumName === album.albumName ? 'text-blue-600 border-blue-600 font-semibold' : 'text-gray-500'}` }
             >{album.albumName}</button>
           )}
         </div>
