@@ -15,7 +15,7 @@ function CreateAlbum({user}) {
     }
     
     // send req to create album
-    await fbAddDoc(`/app/${user.uid}/albums`, {album: newAlbumName})
+    await fbAddDoc(`/app/${user.uid}/albums`, {albumName: newAlbumName})
     // clear form ; show msg
     e.target.reset()
     toast.success('album created seccessfully!')
