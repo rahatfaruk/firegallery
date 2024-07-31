@@ -12,6 +12,7 @@ function CreateAlbum({user}) {
     const newAlbumName = e.target.albumName.value.trim()
     if (!newAlbumName.length) {
       toast.warn('type album name!')
+      return
     }
     
     // send req to create album
