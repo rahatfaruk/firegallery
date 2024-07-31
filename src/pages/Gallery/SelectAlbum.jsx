@@ -5,7 +5,6 @@ import { AuthContext } from "../../context/AuthProvider";
 
 function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
   const [albums, setAlbums] = useState([])
-  // const [selectedAlbum, setSelectedAlbum] = useState(null)
   const {user} = useContext(AuthContext)
 
   // get all album
@@ -37,7 +36,7 @@ function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
           )}
         </div>
         ) :
-        <p className="hidden text-gray-600">No album available! Create one!</p>
+        <p className="text-gray-600">No album available! Create one!</p>
         }
 
       </div>
