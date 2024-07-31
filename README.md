@@ -13,4 +13,5 @@ This project is developed and designed by *Rahat Faruk* (me). I wanted to explor
   - live gallery
   - loading on fetch 
   - verify if the file is a valid image type
+  - albums: create, delete album; group images based on album
 
