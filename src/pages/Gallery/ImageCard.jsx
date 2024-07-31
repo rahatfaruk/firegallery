@@ -23,18 +23,18 @@ function ImageCard({img}) {
   }
 
   return (  
-    <div className="relative w-full max-w-lg self-center border rounded-md shadow-md">
-      <div title={`${Math.trunc(img.size/1000)} kb`}>
-        <img src={img.photoURL} className="w-full h-52 object-cover rounded-t-md" alt="" />
+    <div className="relative w-full max-w-80 self-center border rounded-md shadow-md">
+      <div title={`${Math.trunc(img.size/1000)} kb`} className="border-b">
+        <img src={img.photoURL} className="w-full h-52 object-contain rounded-t-md" alt="" />
       </div>
 
       <div className="flex items-center justify-between">
         <h3 className="p-2 text-sm">{img.name}</h3>
 
         <div className="flex gap-1 mr-1">
-          <button onClick={copyPhotoURL} className="px-1 py-1 rounded-md text-blue-500" title="copy url"> <Copy /> </button>
+          <button onClick={copyPhotoURL} className="px-1 py-1 rounded-md text-blue-500 active:scale-90" title="copy url"> <Copy /> </button>
           
-          <button onClick={handleDeleteImage} className="px-1 py-1 rounded-md text-red-500" title="delete this image"> <Trash3Fill /> </button>
+          <button onClick={handleDeleteImage} className="px-1 py-1 rounded-md text-red-500 active:scale-90" title="delete this image"> <Trash3Fill /> </button>
         </div>
       </div>
     </div>

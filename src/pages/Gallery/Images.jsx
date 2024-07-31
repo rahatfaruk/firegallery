@@ -29,7 +29,7 @@ function Images({selectedAlbum, setSelectedAlbum}) {
         <p className="text-gray-600">
           No images available! Upload image; or <button onClick={handleDeleteAlbum} className="inline text-red-700 font-semibold hover:opacity-80">Delete album</button>
         </p> :
-        <div className="grid justify-center md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid justify-items-center md:grid-cols-2 lg:grid-cols-4 gap-4">
           {images.map(img => <ImageCard key={img.id} img={img} /> )}
         </div>
       }
