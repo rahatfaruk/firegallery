@@ -1,12 +1,11 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import CreateAlbum from "./CreateAlbum";
-import SelectAlbum from "./SelectAlbum";
+import Albums from "./Albums";
 import UploadImage from "./UploadImage";
 import Images from "./Images";
 
 function Gallery() {
-  const [isLoading, setIsLoading] = useState(true)
   const [selectedAlbum, setSelectedAlbum] = useState('')
   const {user} = useContext( AuthContext )
 
@@ -18,11 +17,14 @@ function Gallery() {
         <h2 className="text-2xl font-semibold">Gallery</h2>
         
         <CreateAlbum user={user} />
-        <SelectAlbum selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} />
+        <Albums selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} />
 
         {selectedAlbum && (<>
+          <div className="mt-8 mb-3 flex items-center gap-2">
+            <h3 className="text-blue-600 font-semibold">{selectedAlbum.albumName} album: </h3>
+          </div>
           <UploadImage selectedAlbum={selectedAlbum} />
-          <Images selectedAlbum={selectedAlbum} />
+          <Images selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} />
         </>)}
         
       </div>

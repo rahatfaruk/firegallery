@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { fbAuth, fbStorage, fbFirestore } from "../../firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection, deleteDoc, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 
 function useFirebase() {
   const [loading, setLoading] = useState(true)

@@ -48,12 +48,12 @@ function UploadImage({selectedAlbum}) {
 
 
   return (
-    <div className="mt-10">
+    <>
       <label className="block">
         <span className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors hover:cursor-pointer disabled:opacity-75">Upload image <Upload/> </span>
         <input onChange={handleUploadImage} type="file" name="imagesInp" className="hidden" />
       </label>
-    </div>
+    </>
   )
 }
 

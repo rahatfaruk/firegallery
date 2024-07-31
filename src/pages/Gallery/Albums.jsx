@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { fbFirestore } from "../../../firebase.config";
 import { AuthContext } from "../../context/AuthProvider";
 
-function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
+function Albums({selectedAlbum, setSelectedAlbum}) {
   const [albums, setAlbums] = useState([])
   const {user} = useContext(AuthContext)
 
@@ -23,7 +23,7 @@ function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
 
   return (
     <div>
-      <h3 className="mt-6 text-gray-600 font-semibold text-lg">Select an album:</h3>
+      <h3 className="mt-6 text-gray-600 font-semibold">Select an album:</h3>
       <div className="mt-2">
         {albums?.length > 0 ? (
         <div className="flex gap-3 flex-wrap">
@@ -36,7 +36,7 @@ function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
           )}
         </div>
         ) :
-        <p className="text-gray-600">No album available! Create one!</p>
+        <p className="text-gray-600">No album available! Create one! </p>
         }
 
       </div>
@@ -44,4 +44,4 @@ function SelectAlbum({selectedAlbum, setSelectedAlbum}) {
   );
 }
 
-export default SelectAlbum;
+export default Albums;
